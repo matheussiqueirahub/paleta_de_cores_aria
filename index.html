@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paleta Harmoniosa - Exemplo</title>
+    <style>
+      :root {
+        --bg: #F7FAFF;
+        --surface: #FFFFFF;
+        --primary: #3A7BD5; /* azul */
+        --primary-700: #2C5FA8;
+        --secondary: #2EC4B6; /* teal */
+        --secondary-700: #219E92;
+        --accent: #FF6B6B; /* coral */
+        --text: #1F2A44; /* slate */
+        --muted: #5B6477;
+        --border: #E2E8F0;
+        --shadow: 0 8px 20px rgba(31, 42, 68, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        color: var(--text);
+        background: linear-gradient(180deg, var(--bg), #ffffff 50%) fixed;
+        line-height: 1.6;
+      }
+
+      .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+
+      header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        box-shadow: var(--shadow);
+      }
+      header .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1rem;
+      }
+      .brand { display: flex; align-items: center; gap: .75rem; }
+      .brand .logo {
+        width: 36px; height: 36px; border-radius: 10px; background: white;
+        background-image:
+          radial-gradient(closest-side, var(--accent), transparent 60%),
+          linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.6) 100%);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      }
+      .brand h1 { font-size: 1.25rem; margin: 0; }
+      nav a {
+        color: white; text-decoration: none; margin-left: 1rem; opacity: 0.95; font-weight: 600;
+      }
+      nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 2px; }
+
+      main { padding: 2rem 0; }
+      .grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+      @media (min-width: 900px) {
+        .grid { grid-template-columns: 2fr 1fr; }
+      }
+
+      .card {
+        background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+        padding: 1.25rem; box-shadow: var(--shadow);
+      }
+      h2 { margin-top: 0; }
+      .kicker { color: var(--muted); font-size: .9rem; margin: 0 0 .5rem; }
+
+      .buttons { display: flex; gap: .75rem; flex-wrap: wrap; }
+      .button {
+        display: inline-block; padding: .6rem 1rem; border-radius: 10px; border: 1px solid transparent;
+        text-decoration: none; font-weight: 600; transition: .2s ease; cursor: pointer;
+      }
+      .button.primary { background: var(--primary); color: white; }
+      .button.primary:hover { background: var(--primary-700); transform: translateY(-1px); }
+      .button.secondary { background: var(--secondary); color: white; }
+      .button.secondary:hover { background: var(--secondary-700); transform: translateY(-1px); }
+      .button.outline { background: transparent; color: var(--primary); border-color: var(--primary); }
+      .button.outline:hover { background: rgba(58, 123, 213, 0.08); }
+
+      a.link { color: var(--primary); font-weight: 600; }
+      a.link:hover { color: var(--primary-700); }
+
+      aside .tip {
+        background: linear-gradient(180deg, rgba(46,196,182,0.08), rgba(46,196,182,0.02));
+        border: 1px solid rgba(46,196,182,0.25);
+        padding: 1rem; border-radius: 12px;
+      }
+
+      .palette { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; margin-top: .75rem; }
+      .swatch { border-radius: 10px; border: 1px solid var(--border); overflow: hidden; background: var(--surface); box-shadow: var(--shadow); }
+      .swatch .color { height: 64px; }
+      .swatch .meta { padding: .5rem .6rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; }
+
+      footer { border-top: 1px solid var(--border); padding: 1rem 0; color: var(--muted); }
+      code { background: #F1F5F9; padding: .15rem .4rem; border-radius: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <h1>Paleta Harmoniosa</h1>
+        </div>
+        <nav aria-label="principal">
+          <a href="#paleta">Paleta</a>
+          <a href="#exemplo">Exemplo</a>
+          <a href="#contato">Contato</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="grid">
+        <section id="exemplo" class="card">
+          <p class="kicker">Exemplo de UI</p>
+          <h2>Componentes com a paleta</h2>
+          <p>
+            Esta página usa uma paleta harmoniosa baseada em tons análogos de azul e teal,
+            com um acento coral para chamadas de ação.
+          </p>
+          <div class="buttons">
+            <a class="button primary" href="#">Botão primário</a>
+            <a class="button secondary" href="#">Botão secundário</a>
+            <a class="button outline" href="#">Botão neutro</a>
+            <a class="link" href="#">Um link estilizado</a>
+          </div>
+          <p>
+            Você pode personalizar as cores alterando as variáveis CSS em <code>:root</code>.
+          </p>
+        </section>
+
+        <aside class="card">
+          <p class="kicker">Dica</p>
+          <div class="tip">
+            <strong>Harmonia:</strong> use <em>primária</em> para ações, <em>secundária</em> para realces e
+            <em>acento</em> com moderação para destaque. Mantenha contraste adequado com o texto.
+          </div>
+        </aside>
+
+        <section id="paleta" class="card" style="grid-column: 1 / -1;">
+          <p class="kicker">Paleta</p>
+          <h2>Amostras de cores</h2>
+          <div class="palette">
+            <div class="swatch">
+              <div class="color" style="background: var(--primary)"></div>
+              <div class="meta"><span>Primária</span><span>#3A7BD5</span></div>
+            </div>
+            <div class="swatch">
+              <div class="color" style="background: var(--secondary)"></div>
+              <div class="meta"><span>Secundária</span><span>#2EC4B6</span></div>
+            </div>
+            <div class="swatch">
+              <div class="color" style="background: var(--accent)"></div>
+              <div class="meta"><span>Acento</span><span>#FF6B6B</span></div>
+            </div>
+            <div class="swatch">
+              <div class="color" style="background: var(--bg)"></div>
+              <div class="meta"><span>Fundo</span><span>#F7FAFF</span></div>
+            </div>
+            <div class="swatch">
+              <div class="color" style="background: var(--surface)"></div>
+              <div class="meta"><span>Superfície</span><span>#FFFFFF</span></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="container" id="contato">
+      <small>Exemplo criado com CSS custom properties. Edite e explore!</small>
+    </footer>
+  </body>
+  </html>
+
