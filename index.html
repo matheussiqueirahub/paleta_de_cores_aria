@@ -8,6 +8,7 @@
     <meta name="theme-color" content="#F7FAFF" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0E1320" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://matheussiqueirahub.github.io/paleta_de_cores_aria/" />
+    <link id="favicon" rel="icon" type="image/svg+xml" href="favicon-light.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Paleta de Cores ARIA" />
@@ -29,6 +30,8 @@
           var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           var theme = saved || (prefersDark ? 'dark' : 'light');
           document.documentElement.setAttribute('data-theme', theme);
+          var fav = document.getElementById('favicon');
+          if (fav) fav.setAttribute('href', theme === 'dark' ? 'favicon-dark.svg' : 'favicon-light.svg');
         } catch (e) {}
       })();
     </script>
@@ -246,6 +249,8 @@
           btn.setAttribute('aria-pressed', String(theme === 'dark'));
           btn.textContent = theme === 'dark' ? '☀️' : '🌙';
           btn.title = theme === 'dark' ? 'Modo claro' : 'Modo escuro';
+          var fav = document.getElementById('favicon');
+          if (fav) fav.setAttribute('href', theme === 'dark' ? 'favicon-dark.svg' : 'favicon-light.svg');
         }
         var current = document.documentElement.getAttribute('data-theme') || 'light';
         setTheme(current);
