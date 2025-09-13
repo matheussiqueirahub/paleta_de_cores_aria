@@ -10,7 +10,8 @@ Projeto simples em HTML/CSS com uma paleta de cores harmoniosa e elementos semâ
 - Navegação com `aria-label` e foco em contraste legível
 
 ## 🧪 Visualizar
-Abra o arquivo `index.html` diretamente no navegador.
+- Demo (GitHub Pages): https://matheussiqueirahub.github.io/paleta_de_cores_aria/
+- Local: abra o arquivo `index.html` diretamente no navegador.
 
 > Dica: use uma extensão como “Live Server” (VS Code) para recarregar automaticamente ao salvar.
 
