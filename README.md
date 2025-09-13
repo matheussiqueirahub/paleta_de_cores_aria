@@ -4,6 +4,7 @@ Projeto simples em HTML/CSS com uma paleta de cores harmoniosa e elementos semâ
 
 ## ✨ Destaques
 - Paleta harmoniosa: primária (azul), secundária (teal) e acento (coral)
+- Modo claro/escuro com toggle e persistência em `localStorage`
 - Estrutura semântica: `header`, `section`, `aside`, `footer`
 - Componentes prontos: botões (primário, secundário, contorno) e links
 - Variáveis CSS centralizadas em `:root` para fácil personalização
@@ -12,6 +13,10 @@ Projeto simples em HTML/CSS com uma paleta de cores harmoniosa e elementos semâ
 ## 🧪 Visualizar
 - Demo (GitHub Pages): https://matheussiqueirahub.github.io/paleta_de_cores_aria/
 - Local: abra o arquivo `index.html` diretamente no navegador.
+
+### Modo escuro
+- Use o botão no topo (🌙/☀️) para alternar entre claro e escuro.
+- A preferência fica salva e respeita o `prefers-color-scheme` do sistema.
 
 > Dica: use uma extensão como “Live Server” (VS Code) para recarregar automaticamente ao salvar.
 
@@ -52,6 +57,10 @@ Para ajustar, edite as variáveis no bloco `:root` em `index.html`.
 - [x] Paleta consistente via CSS vars
 - [x] Componentes interativos (botões/links)
 - [x] Dicas ARIA na navegação
+- [x] Modo escuro com toggle e persistência
+
+---
+Se quiser, posso incluir um screenshot em `docs/preview.png` assim que o Pages estiver online (ou gerar via ação do GitHub). 
 
 ---
 Se quiser, posso gerar uma variação em “modo escuro” e alternância automática no mesmo arquivo.

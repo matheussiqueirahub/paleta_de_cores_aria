@@ -4,6 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Paleta Harmoniosa - Exemplo</title>
+    <script>
+      // Define o tema o mais cedo possível para evitar flicker
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
     <style>
       :root {
         --bg: #F7FAFF;
@@ -19,6 +30,20 @@
         --shadow: 0 8px 20px rgba(31, 42, 68, 0.08);
       }
 
+      :root[data-theme='dark'] {
+        --bg: #0E1320;
+        --surface: #161B26;
+        --primary: #6BA5FF;
+        --primary-700: #4A82D9;
+        --secondary: #39D0C7;
+        --secondary-700: #2CA69E;
+        --accent: #FF7A7A;
+        --text: #E6ECF2;
+        --muted: #A7B0C0;
+        --border: #243043;
+        --shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      }
+
       * { box-sizing: border-box; }
       html, body { height: 100%; }
       body {
@@ -27,6 +52,10 @@
         color: var(--text);
         background: linear-gradient(180deg, var(--bg), #ffffff 50%) fixed;
         line-height: 1.6;
+      }
+
+      [data-theme='dark'] body {
+        background: linear-gradient(180deg, var(--bg), #0b1020 50%) fixed;
       }
 
       .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
@@ -56,6 +85,19 @@
       }
       nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 2px; }
 
+      .theme-toggle {
+        margin-left: 1rem;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        color: #fff;
+        border-radius: 999px;
+        padding: .4rem .6rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: .2s ease;
+      }
+      .theme-toggle:hover { background: rgba(255, 255, 255, 0.25); transform: translateY(-1px); }
+
       main { padding: 2rem 0; }
       .grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
       @media (min-width: 900px) {
@@ -80,6 +122,7 @@
       .button.secondary:hover { background: var(--secondary-700); transform: translateY(-1px); }
       .button.outline { background: transparent; color: var(--primary); border-color: var(--primary); }
       .button.outline:hover { background: rgba(58, 123, 213, 0.08); }
+      [data-theme='dark'] .button.outline:hover { background: rgba(107, 165, 255, 0.14); }
 
       a.link { color: var(--primary); font-weight: 600; }
       a.link:hover { color: var(--primary-700); }
@@ -97,6 +140,7 @@
 
       footer { border-top: 1px solid var(--border); padding: 1rem 0; color: var(--muted); }
       code { background: #F1F5F9; padding: .15rem .4rem; border-radius: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; }
+      [data-theme='dark'] code { background: #0F172A; color: var(--text); }
     </style>
   </head>
   <body>
@@ -110,6 +154,7 @@
           <a href="#paleta">Paleta</a>
           <a href="#exemplo">Exemplo</a>
           <a href="#contato">Contato</a>
+          <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" aria-pressed="false" title="Alternar tema">🌙</button>
         </nav>
       </div>
     </header>
@@ -174,6 +219,24 @@
     <footer class="container" id="contato">
       <small>Exemplo criado com CSS custom properties. Edite e explore!</small>
     </footer>
+    <script>
+      (function () {
+        var btn = document.getElementById('theme-toggle');
+        if (!btn) return;
+        function setTheme(theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+          try { localStorage.setItem('theme', theme); } catch (e) {}
+          btn.setAttribute('aria-pressed', String(theme === 'dark'));
+          btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+          btn.title = theme === 'dark' ? 'Modo claro' : 'Modo escuro';
+        }
+        var current = document.documentElement.getAttribute('data-theme') || 'light';
+        setTheme(current);
+        btn.addEventListener('click', function () {
+          var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          setTheme(next);
+        });
+      })();
+    </script>
   </body>
   </html>
-
