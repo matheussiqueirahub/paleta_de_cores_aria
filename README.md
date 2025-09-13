@@ -1,5 +1,7 @@
 # Paleta de Cores ARIA
 
+![Preview da página](docs/preview.png)
+
 Projeto simples em HTML/CSS com uma paleta de cores harmoniosa e elementos semânticos, incluindo dicas de acessibilidade (ARIA). Ideal para usar como base ou inspiração em pequenos sites e protótipos.
 
 ## ✨ Destaques
@@ -18,7 +20,7 @@ Projeto simples em HTML/CSS com uma paleta de cores harmoniosa e elementos semâ
 - Use o botão no topo (🌙/☀️) para alternar entre claro e escuro.
 - A preferência fica salva e respeita o `prefers-color-scheme` do sistema.
 
-> Dica: use uma extensão como “Live Server” (VS Code) para recarregar automaticamente ao salvar.
+> Dica: use uma extensão como "Live Server" (VS Code) para recarregar automaticamente ao salvar.
 
 ## 🎨 Paleta de cores (padrão)
 - Primária: `#3A7BD5`
@@ -37,6 +39,7 @@ Para ajustar, edite as variáveis no bloco `:root` em `index.html`.
 ## 📁 Estrutura
 - `index.html`: página com layout, componentes e estilos embutidos
 - `README.md`: este guia
+- `docs/preview.png`: screenshot gerado automaticamente via GitHub Actions
 
 ## 🔎 Acessibilidade
 - Navegação principal com `aria-label="principal"`
@@ -59,8 +62,3 @@ Para ajustar, edite as variáveis no bloco `:root` em `index.html`.
 - [x] Dicas ARIA na navegação
 - [x] Modo escuro com toggle e persistência
 
----
-Se quiser, posso incluir um screenshot em `docs/preview.png` assim que o Pages estiver online (ou gerar via ação do GitHub). 
-
----
-Se quiser, posso gerar uma variação em “modo escuro” e alternância automática no mesmo arquivo.

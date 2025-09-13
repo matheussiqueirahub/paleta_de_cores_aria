@@ -1,0 +1,55 @@
+name: Capture Screenshot
+
+on:
+  workflow_run:
+    workflows: ["Deploy GitHub Pages"]
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  shot:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Puppeteer
+        run: |
+          npm init -y
+          npm install puppeteer@22
+
+      - name: Capture screenshot
+        env:
+          TARGET_URL: https://matheussiqueirahub.github.io/paleta_de_cores_aria/
+        run: |
+          mkdir -p paleta_de_cores_aria/docs
+          node - <<'NODE'
+          const puppeteer = require('puppeteer');
+          (async () => {
+            const url = process.env.TARGET_URL;
+            const browser = await puppeteer.launch({ args: ['--no-sandbox','--disable-setuid-sandbox'] });
+            const page = await browser.newPage();
+            await page.setViewport({ width: 1366, height: 800, deviceScaleFactor: 2 });
+            await page.goto(url, { waitUntil: 'networkidle2', timeout: 180000 });
+            await page.waitForTimeout(1500);
+            await page.screenshot({ path: 'paleta_de_cores_aria/docs/preview.png', fullPage: true });
+            await browser.close();
+          })().catch(err => { console.error(err); process.exit(1); });
+          NODE
+
+      - name: Commit screenshot
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: add/update screenshot preview.png"
+          branch: main
+
