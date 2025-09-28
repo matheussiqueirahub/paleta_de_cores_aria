@@ -1,0 +1,18 @@
+{
+  "name": "paleta_de_cores_aria",
+  "version": "1.0.0",
+  "description": "![Preview da página](docs/preview.png)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.47.2"
+  }
+}
