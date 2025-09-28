@@ -32,7 +32,7 @@ jobs:
         env:
           TARGET_URL: https://matheussiqueirahub.github.io/paleta_de_cores_aria/
         run: |
-          mkdir -p paleta_de_cores_aria/docs
+          mkdir -p docs
           node - <<'NODE'
           const puppeteer = require('puppeteer');
           (async () => {
@@ -42,7 +42,7 @@ jobs:
             await page.setViewport({ width: 1366, height: 800, deviceScaleFactor: 2 });
             await page.goto(url, { waitUntil: 'networkidle2', timeout: 180000 });
             await page.waitForTimeout(1500);
-            await page.screenshot({ path: 'paleta_de_cores_aria/docs/preview.png', fullPage: true });
+            await page.screenshot({ path: 'docs/preview.png', fullPage: true });
             await browser.close();
           })().catch(err => { console.error(err); process.exit(1); });
           NODE
@@ -52,4 +52,3 @@ jobs:
         with:
           commit_message: "docs: add/update screenshot preview.png"
           branch: main
-
