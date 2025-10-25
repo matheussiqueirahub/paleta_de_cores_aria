@@ -25,9 +25,7 @@ jobs:
 
       - name: Install Playwright (Chromium)
         run: |
-          npm init -y
-          npm install -D playwright@1.47.2
-          npx playwright install --with-deps chromium
+          npx --yes playwright@1.47.2 install --with-deps chromium
 
       - name: Wait for Pages to be available
         env:
@@ -48,22 +46,17 @@ jobs:
           TARGET_URL: https://matheussiqueirahub.github.io/paleta_de_cores_aria/
         run: |
           mkdir -p docs
-          node - <<'NODE'
-          const { chromium } = require('playwright');
-          (async () => {
-            const url = process.env.TARGET_URL;
-            const browser = await chromium.launch();
-            const page = await browser.newPage();
-            await page.setViewportSize({ width: 1366, height: 800 });
-            await page.goto(url, { waitUntil: 'networkidle', timeout: 180000 });
-            await page.waitForTimeout(1500);
-            await page.screenshot({ path: 'docs/preview.png', fullPage: true });
-            await browser.close();
-          })().catch(err => { console.error(err); process.exit(1); });
-          NODE
+          npx --yes playwright@1.47.2 screenshot \
+            --wait-until=networkidle \
+            --wait-for-timeout=1500 \
+            --viewport-size=1366x800 \
+            --full-page \
+            "$TARGET_URL" \
+            docs/preview.png
 
       - name: Commit screenshot
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "docs: add/update screenshot preview.png"
           branch: main
+          file_pattern: docs/preview.png
