@@ -47,10 +47,10 @@ jobs:
         run: |
           mkdir -p docs
           npx --yes playwright@1.47.2 screenshot \
-            --wait-until=networkidle \
             --wait-for-timeout=1500 \
-            --viewport-size=1366x800 \
+            --viewport-size=1366,800 \
             --full-page \
+            --timeout=180000 \
             "$TARGET_URL" \
             docs/preview.png
 
